@@ -1,9 +1,13 @@
 plugins {
-    id("loom").version("snapshot")
+    id("wheel").version("snapshot")
 }
 
 project.group = "user11681"
-project.version = "0.0.0"
+project.version = "1.0.0"
+
+wheel {
+    minecraftVersion = "1.16.4"
+}
 
 dependencies {
     modInclude("phormat")

@@ -1,12 +1,11 @@
 package user11681.commonformatting;
 
-import java.util.List;
-import user11681.phormat.api.FormattingInitializer;
+import net.fabricmc.api.ModInitializer;
+import user11681.phormat.api.ExtendedFormatting;
 import user11681.phormat.api.FormattingRegistry;
-import user11681.phormat.asm.access.FormattingAccess;
 
-public class CommonFormatting implements FormattingInitializer {
-    public static final char[] OVERLINE_CODES = {
+public class CommonFormatting implements ModInitializer {
+    public static final char[] overlineCodes = {
         4096,
         4096 + 1,
         4096 + 2,
@@ -15,22 +14,13 @@ public class CommonFormatting implements FormattingInitializer {
         4096 + 5,
     };
 
-    @Override
-    public void register(final FormattingRegistry registry) {
-        registry.register("OVERLINEA", OVERLINE_CODES[0], true);
-        registry.register("OVERLINEB", OVERLINE_CODES[1], true);
-        registry.register("OVERLINEC", OVERLINE_CODES[2], true);
-        registry.register("OVERLINED", OVERLINE_CODES[3], true);
-        registry.register("OVERLINEE", OVERLINE_CODES[4], true);
-        registry.register("OVERLINEF", OVERLINE_CODES[5], true);
-    }
+    public static final ExtendedFormatting overline0 = FormattingRegistry.register("OVERLINE_" + '0', overlineCodes[0], true).formatter(new OverlineFormatter(0));
+    public static final ExtendedFormatting overline1 = FormattingRegistry.register("OVERLINE_" + '1', overlineCodes[1], true).formatter(new OverlineFormatter(1));
+    public static final ExtendedFormatting overline2 = FormattingRegistry.register("OVERLINE_" + '2', overlineCodes[2], true).formatter(new OverlineFormatter(2));
+    public static final ExtendedFormatting overline3 = FormattingRegistry.register("OVERLINE_" + '3', overlineCodes[3], true).formatter(new OverlineFormatter(3));
+    public static final ExtendedFormatting overline4 = FormattingRegistry.register("OVERLINE_" + '4', overlineCodes[4], true).formatter(new OverlineFormatter(4));
+    public static final ExtendedFormatting overline5 = FormattingRegistry.register("OVERLINE_" + '5', overlineCodes[5], true).formatter(new OverlineFormatter(5));
 
     @Override
-    public void customize(final List<FormattingAccess> entries) {
-        for (final FormattingAccess entry : entries) {
-            if (entry.getCode() >= 4096) {
-                entry.setFormatter(new OverlineFormatter(entry.getCode() - 4096));
-            }
-        }
-    }
+    public void onInitialize() {}
 }

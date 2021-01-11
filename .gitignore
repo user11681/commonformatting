@@ -1,8 +1,10 @@
 .*
 
-!.gitignore
-
 build
 out
 run
 
+!.gitignore
+!.gitmodules
+
+!.github
